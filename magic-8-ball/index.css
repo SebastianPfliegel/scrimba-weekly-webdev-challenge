@@ -128,6 +128,7 @@ body {
 
 .button-ask:disabled {
     cursor: not-allowed;
+    background-color: #133163;
 }
 
 .clue {

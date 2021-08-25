@@ -4,6 +4,7 @@ const eight = document.getElementById('8');
 const triangle = document.getElementById('triangle');
 const question = document.getElementById('question');
 const answer = document.getElementById('answer');
+const form = document.getElementById('form-ask');
 const btn = document.getElementById('ask');
 const clue = document.getElementById('clue');
 
@@ -38,13 +39,15 @@ const answers = [
 ];
 
 question.addEventListener('input', inputChange);
-btn.addEventListener('click', askQuestion);
+//btn.addEventListener('click', askQuestion);
+form.addEventListener('submit', askQuestion);
 
 function inputChange() {
     btn.disabled = this.value === '';
 }
 
-function askQuestion() {
+function askQuestion(e) {
+    e.preventDefault();
     question.disabled = true;
     btn.disabled = true;
     clue.innerText = 'Shake the ball to reveal the answer!';
