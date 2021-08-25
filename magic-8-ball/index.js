@@ -15,6 +15,7 @@ let prevY;
 let initialX;
 let initialY;
 let distance = 0;
+let answered = false;
 const answers = [
     'It is certain.',
     'It is decidedly so.',
@@ -39,7 +40,6 @@ const answers = [
 ];
 
 question.addEventListener('input', inputChange);
-//btn.addEventListener('click', askQuestion);
 form.addEventListener('submit', askQuestion);
 
 function inputChange() {
@@ -48,6 +48,7 @@ function inputChange() {
 
 function askQuestion(e) {
     e.preventDefault();
+    answered = false
     question.disabled = true;
     btn.disabled = true;
     clue.innerText = 'Shake the ball to reveal the answer!';
@@ -89,21 +90,25 @@ function drag(e) {
         currentY = e.clientY - initialY;
     }
 
-    distance += Math.sqrt(Math.pow(currentX - prevX, 2) + Math.pow(currentY - prevY, 2));
+    if (!answered) {
+        distance += Math.sqrt(Math.pow(currentX - prevX, 2) + Math.pow(currentY - prevY, 2));
 
-    if ((distance > 0) && (distance < 3000)) {
-        clue.innerText = 'Shake a little more to get your answer!';
-    } else {
-        clue.innerText = 'Type in your question and press Ask.';
-        question.disabled = false;
-        question.value = '';
-        answer.innerText = randomAnswer();
-        ball.style.cursor = 'not-allowed';
-        innerBall.classList.add('ball-inner-answer');
-        eight.style.display = 'none';
-        triangle.style.display = 'block';
-        ball.removeEventListener('touchstart', beginDrag);
-        ball.removeEventListener('mousedown', beginDrag);
+        if ((distance > 0) && (distance < 3000)) {
+            clue.innerText = 'Shake a little more to get your answer!';
+        } else {
+            answered = true;
+            distance = 0;
+            clue.innerText = 'Type in your question and press Ask.';
+            question.disabled = false;
+            question.value = '';
+            answer.innerText = randomAnswer();
+            ball.style.cursor = 'not-allowed';
+            innerBall.classList.add('ball-inner-answer');
+            eight.style.display = 'none';
+            triangle.style.display = 'block';
+            ball.removeEventListener('touchstart', beginDrag);
+            ball.removeEventListener('mousedown', beginDrag);
+        }
     }
 
     ball.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
@@ -113,10 +118,6 @@ function drag(e) {
 }
 
 function endDrag() {
-    if (distance > 3000) {
-        distance = 0;
-    }
-
     ball.style.transform = 'none';
 
     ball.removeEventListener('touchmove', drag);
