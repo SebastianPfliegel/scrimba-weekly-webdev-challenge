@@ -1,0 +1,137 @@
+*, html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #374151;
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    gap: 1.5rem;
+}
+
+.header {
+    font-family: 'Electrolize', sans-serif;
+    font-size: 1.75rem;
+}
+
+.header h1 {
+    background: linear-gradient(45deg, rgba(255,0,0,1) 0%, rgba(255,166,0,1) 16.67%, rgba(255,243,0,1) 33.34%, rgba(0,255,0,1) 50%, rgba(0,0,255,1) 66.67%, rgba(163,97,222,1) 83.34%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.ball {
+    height: 16rem;
+    width: 16rem;
+    background-color: black;
+    border-radius: 9999px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: not-allowed;
+}
+
+.ball-inner {
+    height: 12rem;
+    width: 12rem;
+    background-color: white;
+    border-radius: 9999px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ball-inner-answer {
+    background-color: #1f2937;
+}
+
+.ball-8 {
+    font-family: 'Electrolize', sans-serif;
+    font-size: 5rem;
+    user-select: none;
+}
+
+.ball-answer {
+    width: 0px;
+    height: 0px;
+    border-style: inset;
+    border-width: 0 4.5rem 8.5rem 4.5rem;
+    border-color: transparent transparent #2761be transparent;
+    float: left;
+    margin-bottom: 2rem;
+    transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+}
+
+.ball-answer p {
+    text-align: center;
+    top: 5rem;
+    left: -2rem;
+    position: relative;
+    width: 4rem;
+    height: 93px;
+    font-family: monospace;
+    font-size: 0.75rem;
+    color: #b8bec7;
+}
+
+.container-question {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.question {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 1.5rem;
+    cursor: text;
+    background-color: white;
+}
+
+.question:disabled {
+    cursor: not-allowed;
+    background-color: #9ca3af;
+}
+
+.button-ask {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    cursor: pointer;
+    background-color: #2761be;
+    color: #b8bec7;
+    border: none;
+    font-size: 1.5rem;
+}
+
+.button-ask:disabled {
+    cursor: not-allowed;
+}
+
+.clue {
+    color: white;
+    font-family: sans-serif;
+    font-size: 2rem;
+}
